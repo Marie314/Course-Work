@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Toppings]
+(
+	[Id]	INT IDENTITY PRIMARY KEY NOT NULL,
+	[Name]	NVARCHAR (256)			 NOT NULL,
+	[Price] DECIMAL					 NOT NULL,
+)
