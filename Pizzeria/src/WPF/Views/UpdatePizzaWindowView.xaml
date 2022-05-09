@@ -1,0 +1,31 @@
+﻿<Window x:Class="WPF.Views.UpdatePizzaWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Views"
+        mc:Ignorable="d"
+        Title="UPDATE PIZZA" Height="450" Width="600">
+    <Grid>
+        <StackPanel Width="600" DataContext="{Binding Pizza, UpdateSourceTrigger=PropertyChanged}">
+            <Border Height="183" Width="210" Margin="0, 40, 320, 0" CornerRadius="8">
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding Path=ImagePath}"></ImageBrush>
+                </Border.Background>
+            </Border>
+            <TextBlock HorizontalAlignment="Right" Margin="0 -285 140 0" FontWeight="Bold" FontSize="20" Width="170" TextWrapping="Wrap">Pizza name</TextBlock>
+            <TextBox Style="{StaticResource MaterialDesignTextBox}" Height="30" Width="170" Margin="150, -190, 0, 50" Text="{Binding Path=Name}"></TextBox>
+            <TextBlock FontSize="20" HorizontalAlignment="Right" Width="200" FontWeight="Bold" Margin="0, -120, 110, 0" TextWrapping="Wrap">Pizza description</TextBlock>
+            <TextBox Style="{StaticResource MaterialDesignTextBox}" Height="30" Width="170" Margin="150, -55, 0, 50" Text="{Binding Path=Description}"></TextBox>
+            <TextBlock FontSize="20" HorizontalAlignment="Right" Width="200" FontWeight="Bold" Margin="0, -20, 110, 0" TextWrapping="Wrap">Price</TextBlock>
+            <TextBox Style="{StaticResource MaterialDesignTextBox}" Height="30" Width="170" Margin="150, -10, 0, 50" Text="{Binding Path=Price}"></TextBox>
+
+            <Button x:Name="RemovePizza" Background="Red" BorderBrush="Red" Style="{StaticResource MaterialDesignFlatDarkBgButton}" HorizontalAlignment="Left" Margin="40, 20, 0, 0">
+                <TextBlock Style="{StaticResource MaterialDesignButtonTextBlock}">Remove</TextBlock>
+            </Button>
+            <Button x:Name="UpdatePizza" Style="{StaticResource MaterialDesignFlatDarkBgButton}" HorizontalAlignment="Right" Margin="0, -40, 55, 0">
+                <TextBlock Style="{StaticResource MaterialDesignButtonTextBlock}">Update</TextBlock>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

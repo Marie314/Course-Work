@@ -52,6 +52,7 @@ namespace Pizzeria.Application.Services.Impl
 
                     var userDto = new UserDto()
                     {
+                        Id = user.Id,
                         Name = user.Name,
                         UserName = user.UserName,
                         RoleName = userRole.Name,

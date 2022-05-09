@@ -1,0 +1,35 @@
+﻿<Window x:Class="WPF.Views.Test"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Views"
+        mc:Ignorable="d"
+        Title="Test" Height="800" Width="1250">
+    <Grid>
+        <ListView Style="{StaticResource MaterialDesignListView}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListViewItem Background="Gray" Height="200" Style="{StaticResource {x:Type ListViewItem}}">
+                <StackPanel Width="600" Height="187">
+                    <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"  HorizontalAlignment="Left" Margin="0 0 0 0" FontWeight="Bold" FontSize="40" Width="379" TextWrapping="Wrap" Height="72">JAMES P.H.</TextBlock>
+                    <TextBlock Style="{StaticResource MaterialDesignTextBlock}" FontSize="25" HorizontalAlignment="Right" Width="221" Margin="0 -80 0 0" TextWrapping="NoWrap" Height="38">Street wood 15</TextBlock>
+                    <TextBlock Style="{StaticResource MaterialDesignTextBlock}" FontSize="15" HorizontalAlignment="Right" Width="180" Margin="0 -20 40 0" TextWrapping="Wrap" Height="41">Addition information information</TextBlock>
+                    <TextBlock Style="{StaticResource MaterialDesignTextBlock}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Right" Width="180" Margin="0 40 40 0" TextWrapping="Wrap" Height="41">200 BYN</TextBlock>
+                    <Label Style="{StaticResource MaterialDesignLabel}" HorizontalContentAlignment="Center" FontWeight="Bold" Height="40" Width="200" HorizontalAlignment="Left" Margin="0, -60, 0, 0">Date</Label>
+                    <TextBlock Style="{StaticResource MaterialDesignTextBlock}" FontSize="15" HorizontalAlignment="Left" Width="180" Margin="50 -20 40 0" TextWrapping="Wrap" Height="41">24/7/2021 18:00</TextBlock>
+                </StackPanel>
+            </ListViewItem>
+        </ListView>
+        <StackPanel Margin="0,255,200,440" HorizontalAlignment="Right" Width="272">
+            <RadioButton x:Name="FilterOldest" Style="{StaticResource MaterialDesignDarkRadioButton}" GroupName="abc" Content="OLDEST" VerticalContentAlignment="Center" Margin="0, 0, 0, 0">
+            </RadioButton>
+            <RadioButton x:Name="FilterNewest" GroupName="abc" Content="NEWEST" VerticalContentAlignment="Center">
+            </RadioButton>
+        </StackPanel>
+
+    </Grid>
+</Window>

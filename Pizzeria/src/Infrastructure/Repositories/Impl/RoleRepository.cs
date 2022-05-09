@@ -1,16 +1,17 @@
 ﻿using System.Data.SqlClient;
 using Pizzeria.Domain.Entities;
 using Pizzeria.Infrastructure.Helpers.Converters;
+using Pizzeria.Infrastructure.Repositories.Options;
 
 namespace Pizzeria.Infrastructure.Repositories.Impl
 {
-    internal class RoleRepository : IRepository<Role>
+    internal class RoleRepository<T> : IRepository<T>
     {
         private readonly string _connectionString;
 
-        public RoleRepository(string connectionString)
+        public RoleRepository(IRepositoryOptions options)
         {
-            _connectionString = connectionString;
+            _connectionString = options.ConnectionString;
         }
 
         public async Task<Role> AddAsync(Role entity)
@@ -93,7 +94,7 @@ namespace Pizzeria.Infrastructure.Repositories.Impl
             return area;
         }
 
-        public async Task RemovedAsync(int id)
+        public async Task RemoveAsync(int id)
         {
             var parameter = new SqlParameter { ParameterName = "@Id", Value = id };
 

@@ -64,6 +64,7 @@ namespace Pizzeria.Unit.Tests.Services
                 Status = OperationStatus.Success,
                 Result = new UserDto
                 {
+                    Id = 1,
                     Name = "TestName",
                     RoleName = "User",
                     UserName = userName,

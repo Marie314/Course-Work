@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="WPF.Views.OrdersTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF.Views"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d"
+             Height="800" Width="1265">
+    <Grid>
+        <ListView Margin="0,49,0,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Orders}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Width="600" Height="200" Background="Gray">
+                        <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"  HorizontalAlignment="Left" Margin="20 0 0 0" FontWeight="Bold" FontSize="40" Width="379" TextWrapping="Wrap" Height="72" Text="{Binding Path=UserName}"></TextBlock>
+                        <TextBlock Style="{StaticResource MaterialDesignTextBlock}" FontSize="25" HorizontalAlignment="Right" Width="221" Margin="0 -80 0 0" TextWrapping="NoWrap" Height="38" Text="{Binding Path=Address}"></TextBlock>
+                        <TextBlock Style="{StaticResource MaterialDesignTextBlock}" FontSize="15" HorizontalAlignment="Right" Width="180" Margin="0 -20 40 0" TextWrapping="Wrap" Height="41" Text="{Binding Path=Description}"></TextBlock>
+                        <TextBlock Style="{StaticResource MaterialDesignTextBlock}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Right" Width="180" Margin="0 40 40 0" TextWrapping="Wrap" Height="41" Text="{Binding Path=FormattedPrice}"></TextBlock>
+                        <Label Style="{StaticResource MaterialDesignLabel}" HorizontalContentAlignment="Center" FontWeight="Bold" Height="40" Width="200" HorizontalAlignment="Left" Margin="0, -60, 0, 0">DATE</Label>
+                        <TextBlock Style="{StaticResource MaterialDesignTextBlock}" FontSize="15" HorizontalAlignment="Left" Width="180" Margin="20 -20 40 0" TextWrapping="Wrap" Height="41" Text="{Binding Path=OrderDate}"></TextBlock>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button x:Name="GenerateReport" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="170" HorizontalAlignment="Right" Margin="0,12,1077,756">
+            <TextBlock Style="{StaticResource MaterialDesignButtonTextBlock}">GENERATE REPORT</TextBlock>
+        </Button>
+
+        <Button x:Name="SetFilterByDate" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="914,12,0,0">
+            <TextBlock Style="{StaticResource MaterialDesignButtonTextBlock}">Filter By Date</TextBlock>
+        </Button>
+        <Button x:Name="SetFilterByPrice" Margin="0,12,375,0" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="200" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock Style="{StaticResource MaterialDesignButtonTextBlock}">Filter By Price</TextBlock>
+        </Button>
+    </Grid>
+</UserControl>

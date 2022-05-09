@@ -11,7 +11,7 @@ namespace Pizzeria.Infrastructure.Repositories
 
         public Task<T> AddAsync(T entity);
 
-        public Task RemovedAsync(int id);
+        public Task RemoveAsync(int id);
 
         public Task UpdateAsync(T entity);
     }

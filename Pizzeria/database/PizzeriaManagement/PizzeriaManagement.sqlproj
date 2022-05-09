@@ -58,22 +58,18 @@
     <Folder Include="Properties" />
     <Folder Include="tables" />
     <Folder Include="foreign keys" />
-    <Folder Include="stored procedures" />
+    <Folder Include="post deployment" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="tables\Users.sql" />
-    <Build Include="tables\Orders.sql" />
     <Build Include="tables\OrderItems.sql" />
     <Build Include="tables\Pizzas.sql" />
-    <Build Include="tables\Toppings.sql" />
-    <Build Include="tables\Sizes.sql" />
-    <Build Include="tables\PizzaToppings.sql" />
     <Build Include="foreign keys\FK_Order_OrderItems.sql" />
-    <Build Include="foreign keys\FK_Pizza_OrderItems.sql" />
-    <Build Include="foreign keys\FK_Size_Pizzas.sql" />
-    <Build Include="foreign keys\FK_Pizza_PizzaToppings.sql" />
-    <Build Include="foreign keys\FK_Topping_PizzaToppings.sql" />
     <Build Include="foreign keys\FK_User_Orders.sql" />
     <Build Include="tables\Roles.sql" />
+    <Build Include="tables\Orders.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="post deployment\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

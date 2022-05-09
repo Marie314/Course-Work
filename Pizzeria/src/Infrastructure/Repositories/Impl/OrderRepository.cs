@@ -1,5 +1,6 @@
 ﻿using Pizzeria.Domain.Entities;
 using Pizzeria.Infrastructure.Helpers.Converters;
+using Pizzeria.Infrastructure.Repositories.Options;
 using System.Data.SqlClient;
 
 namespace Pizzeria.Infrastructure.Repositories.Impl
@@ -8,9 +9,9 @@ namespace Pizzeria.Infrastructure.Repositories.Impl
     {
         private readonly string _connectionString;
 
-        public OrderRepository(string connectionString)
+        public OrderRepository(IRepositoryOptions options)
         {
-            _connectionString = connectionString;
+            _connectionString = options.ConnectionString;
         }
 
         public async Task<Order> AddAsync(Order entity)
@@ -20,34 +21,46 @@ namespace Pizzeria.Infrastructure.Repositories.Impl
                 new SqlParameter { ParameterName = "@OrderDate", Value = entity.OrderDate },
                 new SqlParameter { ParameterName = "@TotalPrice", Value = entity.TotalPrice },
                 new SqlParameter { ParameterName = "@UserId", Value = entity.UserId },
+                new SqlParameter { ParameterName = "@Address", Value = entity.Address },
+                new SqlParameter { ParameterName = "@Description", Value = entity.Description },
+                new SqlParameter { ParameterName = "@UserName", Value = entity.UserName },
             };
 
             var sql = "INSERT INTO Orders\n"
-                          + "VALUES (@OrderDate, @TotalPrice, @UserId)\n"
+                          + "VALUES (@UserId, @Address, @OrderDate, @TotalPrice, @Description, @UserName)\n"
                           + "SELECT SCOPE_IDENTITY()";
 
-            using (var connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
-
-                using (var command = new SqlCommand(sql, connection))
+                using (var connection = new SqlConnection(_connectionString))
                 {
-                    command.Parameters.AddRange(parameters);
+                    connection.Open();
 
-                    var reader = await command.ExecuteReaderAsync();
-                    reader.Read();
+                    using (var command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddRange(parameters);
 
-                    var id = Convert.ToInt32(reader.GetValue(0), null);
-                    entity.Id = id;
+                        var reader = await command.ExecuteReaderAsync();
+                        reader.Read();
 
-                    return entity;
+                        var id = Convert.ToInt32(reader.GetValue(0), null);
+                        entity.Id = id;
+
+                        return entity;
+                    }
                 }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
         }
 
         public IQueryable<Order> GetAll()
         {
-            var request = "SELECT Id, OrderDate, TotalPrice, UserId\n"
+            var request = "SELECT Id, OrderDate, TotalPrice, UserId, Address, Description, UserName\n"
                               + "FROM Orders";
 
             IEnumerable<Order> result;
@@ -72,7 +85,7 @@ namespace Pizzeria.Infrastructure.Repositories.Impl
         {
             var parameter = new SqlParameter { ParameterName = "@Id", Value = id };
 
-            var request = "SELECT Id, OrderDate, TotalPrice, UserId\n"
+            var request = "SELECT Id, OrderDate, TotalPrice, UserId, Address, Description, UserName\n"
                               + "FROM Orders\n"
                               + "WHERE Id = @Id";
 
@@ -95,7 +108,7 @@ namespace Pizzeria.Infrastructure.Repositories.Impl
             return area;
         }
 
-        public async Task RemovedAsync(int id)
+        public async Task RemoveAsync(int id)
         {
             var parameter = new SqlParameter { ParameterName = "@Id", Value = id };
 
@@ -122,11 +135,14 @@ namespace Pizzeria.Infrastructure.Repositories.Impl
                 new SqlParameter { ParameterName = "@OrderDate", Value = entity.OrderDate },
                 new SqlParameter { ParameterName = "@TotalPrice", Value = entity.TotalPrice },
                 new SqlParameter { ParameterName = "@UserId", Value = entity.UserId },
+                new SqlParameter { ParameterName = "@Address", Value = entity.Address },
+                new SqlParameter { ParameterName = "@Description", Value = entity.Description },
+                new SqlParameter { ParameterName = "@UserName", Value = entity.UserName },
             };
 
             var request = "UPDATE Orders\n"
                               + "SET OrderDate = @OrderDate, TotalPrice = @TotalPrice, "
-                              + "UserId = @UserId\n"
+                              + "UserId = @UserId, Address = @Address, Description = @Description, UserName = @UserName\n"
                               + "WHERE Id = @Id";
 
             using (var connection = new SqlConnection(_connectionString))
