@@ -5,7 +5,7 @@ using Pizzeria.Infrastructure.Repositories.Options;
 
 namespace Pizzeria.Infrastructure.Repositories.Impl
 {
-    internal class RoleRepository<T> : IRepository<T>
+    internal class RoleRepository : IRepository<Role>
     {
         private readonly string _connectionString;
 

@@ -82,7 +82,7 @@ namespace WPF
             .FromAssemblies(new []
             {
                 Assembly.Load("Pizzeria.Infrastructure"),
-                Assembly.Load("Pizzeria.Application"), 
+                Assembly.Load("Pizzeria.Application"),
             })
                 .AddClasses(@class => @class.Where(t => t.Name.EndsWith("Service", StringComparison.OrdinalIgnoreCase)))
             .AsImplementedInterfaces()

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Pizzeria.Domain.Entities;
+﻿using Pizzeria.Domain.Entities;
 using Pizzeria.Infrastructure.Helpers.Converters;
 using Pizzeria.Infrastructure.Repositories.Options;
+using System.Data.SqlClient;
 
 namespace Pizzeria.Infrastructure.Repositories.Impl
 {
