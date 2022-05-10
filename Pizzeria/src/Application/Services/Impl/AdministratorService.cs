@@ -8,13 +8,11 @@ namespace Pizzeria.Application.Services.Impl
 {
     public class AdministratorService : IAdministratorService
     {
-        private readonly IRepository<Pizza> _pizzaRepository;
         private readonly IRepository<Order> _orderRepository;
         private readonly IRepository<OrderItem> _orderItemRepository;
 
-        public AdministratorService(IRepository<Pizza> pizzaRepository, IRepository<Order> orderRepository, IRepository<OrderItem> orderItemRepository)
+        public AdministratorService(IRepository<Order> orderRepository, IRepository<OrderItem> orderItemRepository)
         {
-            _pizzaRepository = pizzaRepository;
             _orderRepository = orderRepository;
             _orderItemRepository = orderItemRepository;
         }
@@ -57,28 +55,36 @@ namespace Pizzeria.Application.Services.Impl
 
             var report = new StringBuilder();
 
-            report.Append("<div class=\"container\" style=\"width:1000px; height:800px;\">")
-                .Append("<div class=\"days-revenue-header\" style=\"border:1px solid; float:right; width:500px; height:121px; text-align:center; display:grid; align-content:center;\">DAYS REVENUE</div>")
-                .Append($"<div class=\"revenue\" style=\"border:1px solid; width:495px; height:121px; float:none; text-align:center; align-content:center; display:grid;\">TOTAL REVENUE - {revenue} BYN.</div>");
+            report.Append("<div class=\"container\" style=\"width:1500px; height:800px;\">")
+                .Append("<div class=\"days-revenue-header\" style=\"border:1px solid; float:right; border-bottom:none; width: 30.6%; height:121px; text-align:center; display:grid; align-content:center;\">DAYS REVENUE</div>")
+                .Append($"<div class=\"revenue-header\" style=\"border:1px solid; width: 34%; height:121px; float: left; text-align:center; align-content:center; display:grid;\">TOTAL REVENUE - {revenue} BYN.</div>")
+                .Append("<div class=\"pizzas-popularity-header\" style=\"border: 1px solid; float: left; width: 35%; height: 121px; text-align:center; display: grid; align-content:center;\"></div>");
 
-            report.Append("<div class=\"pizzas\" style=\"border:1px solid; width:495px; height:679px; float:left; display:block; text-align:center;\">");
+            report.Append("<div class=\"pizzas\" style=\"border:1px solid; width: 34%; border-bottom:none; height:679px; float: left; display:block; text-align:center;\">");
 
             foreach (var pizzaRevenue in pizzasRevenue)
             {
                 report.Append("<div class=\"pizza\" style=\"height:90px; width:100%; text-align:center; float:none; margin-top:31px;\">")
                     .Append($"<div class=\"Name\">NAME - {pizzaRevenue.PizzaName}</div>")
                     .Append($"<div class=\"Revenue\">TOTAL REVENUE - {pizzaRevenue.Revenue} BYN</div>")
-                    .Append($"<div class=\"Amout\">TOTAL AMOUNT - {pizzaRevenue.PurchasesNumber}</div>")
                     .Append("</div>");
             }
 
-            report.Append("</div>")
-                .Append("<div class=\"days-revenue\" style=\"border:1px solid; float:right; width:500px; height:679px; margin-bottom:100px; display:block; text-align:center;\">");
+            report.Append("</div>").Append("<div class=\"days-revenue\" style=\"border:1px solid; float: right; width: 30.6%; height:679px; margin-bottom:100px; display:block; text-align:center;\">");
 
             foreach (var dayRevenue in daysRevenue)
             {
-                report.Append(
-                    $"<div class=\"day-revenue\" style=\"height:50px; width:100%; text-align: center; float:none; margin-top:31px;\">{dayRevenue.Date} - {dayRevenue.Revenue}</div>");
+                report.Append($"<div class=\"day-revenue\" style=\"height:50px; width:100%; text-align: center; float:none; margin-top:31px;\">{dayRevenue.Date} - {dayRevenue.Revenue}</div>");
+            }
+            report.Append("</div>").Append("<div class=\"pizzas-popularity\" style=\"border:1px solid; border-bottom:none; float:right; width: 35%; height:679px; margin-bottom:100px; display:block; text-align:center;\">");
+
+            var orderedPizzas = pizzasRevenue.OrderBy(pizza => pizza.Revenue);
+
+            foreach (var pizza in orderedPizzas)
+            {
+                report.Append("<div class=\"pizza\" style=\"height:90px; width:100%; text-align:center; float:none; margin-top:31px;\">")
+                    .Append($"<div class=\"Name\">NAME - {pizza.PizzaName}</div>")
+                    .Append($"<div class=\"Revenue\">TOTAL AMOUNT - {pizza.PurchasesNumber} BYN</div>");
             }
 
             report.Append("</div></div>");
