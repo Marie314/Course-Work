@@ -22,6 +22,10 @@ namespace WPF.Common.Helpers
                     {
                         result = false;
                     }
+                    catch (Exception ex)
+                    {
+                        result = false;
+                    }
 
                     return result;
                 })

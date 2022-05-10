@@ -16,6 +16,7 @@
             <Button x:Name="Browse" Style="{StaticResource MaterialDesignFlatDarkBgButton}" HorizontalAlignment="Left" Margin="90, 20, 190, 0">
                 <TextBlock Style="{StaticResource MaterialDesignButtonTextBlock}">BROWSE</TextBlock>
             </Button>
+
             <TextBlock HorizontalAlignment="Right" Margin="0 -400 140 0" FontWeight="Bold" FontSize="20" Width="170" TextWrapping="Wrap">Pizza name</TextBlock>
             <TextBox Style="{StaticResource MaterialDesignTextBox}" Height="30" Width="170" Margin="150, -310, 0, 50" Text="{Binding Path=Name, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock FontSize="20" HorizontalAlignment="Right" Width="200" FontWeight="Bold" Margin="0, -250, 110, 0" TextWrapping="Wrap">Pizza description</TextBlock>

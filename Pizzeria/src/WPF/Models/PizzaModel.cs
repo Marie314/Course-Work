@@ -56,6 +56,7 @@ namespace WPF.Models
             }
         }
 
+        [Required(ErrorMessage = "Must not be empty.")]
         public string ImagePath
         {
             get => Path.Combine($"{Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent}", _imagePath);
