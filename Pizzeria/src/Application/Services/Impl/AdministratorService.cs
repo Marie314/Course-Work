@@ -58,7 +58,7 @@ namespace Pizzeria.Application.Services.Impl
             report.Append("<div class=\"container\" style=\"width:1500px; height:800px;\">")
                 .Append("<div class=\"days-revenue-header\" style=\"border:1px solid; float:right; border-bottom:none; width: 30.6%; height:121px; text-align:center; display:grid; align-content:center;\">DAYS REVENUE</div>")
                 .Append($"<div class=\"revenue-header\" style=\"border:1px solid; width: 34%; height:121px; float: left; text-align:center; align-content:center; display:grid;\">TOTAL REVENUE - {revenue} BYN.</div>")
-                .Append("<div class=\"pizzas-popularity-header\" style=\"border: 1px solid; float: left; width: 35%; height: 121px; text-align:center; display: grid; align-content:center;\"></div>");
+                .Append("<div class=\"pizzas-popularity-header\" style=\"border: 1px solid; float: left; width: 35%; height: 121px; text-align:center; display: grid; align-content:center;\">PIZZAS POPULARITY</div>");
 
             report.Append("<div class=\"pizzas\" style=\"border:1px solid; width: 34%; border-bottom:none; height:679px; float: left; display:block; text-align:center;\">");
 
@@ -84,7 +84,7 @@ namespace Pizzeria.Application.Services.Impl
             {
                 report.Append("<div class=\"pizza\" style=\"height:90px; width:100%; text-align:center; float:none; margin-top:31px;\">")
                     .Append($"<div class=\"Name\">NAME - {pizza.PizzaName}</div>")
-                    .Append($"<div class=\"Revenue\">TOTAL AMOUNT - {pizza.PurchasesNumber} BYN</div>");
+                    .Append($"<div class=\"Revenue\">TOTAL AMOUNT - {pizza.PurchasesNumber}</div>");
             }
 
             report.Append("</div></div>");
