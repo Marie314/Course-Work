@@ -40,7 +40,7 @@ namespace WPF.ViewModels
                 if (value != null)
                 {
                     _pizza = value;
-                    if (!_windowManager.IsWindowOpen<CreateOrderWindowView>())
+                    if (!_windowManager.IsWindowOpen<UpdatePizzaWindowView>())
                     {
                         _updatePizzaWindowViewModel = _viewModelFactory.Create<UpdatePizzaWindowViewModel>();
                         _windowManager.ShowWindowAsync(_updatePizzaWindowViewModel).GetAwaiter().GetResult();
